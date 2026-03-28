@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เปรียบเทียบ EV Motor Show 2026 | 300K–700K บาท</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00C896;
+    --green-dark: #009970;
+    --green-light: #E0FBF4;
+    --blue: #1A73E8;
+    --blue-light: #E8F0FE;
+    --amber: #F59E0B;
+    --amber-light: #FEF3C7;
+    --pink: #EC4899;
+    --pink-light: #FCE7F3;
+    --gray-50: #F8FAFC;
+    --gray-100: #F1F5F9;
+    --gray-200: #E2E8F0;
+    --gray-300: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-500: #64748B;
+    --gray-700: #334155;
+    --gray-900: #0F172A;
+    --bg: #F0F4F8;
+    --card: #ffffff;
+    --font: 'IBM Plex Sans Thai', 'Sarabun', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--gray-900);
+    min-height: 100vh;
+  }
+
+  /* HERO HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0A1628 0%, #0D2137 50%, #0A2020 100%);
+    padding: 2.5rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,200,150,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(26,115,232,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(0,200,150,0.15);
+    border: 1px solid rgba(0,200,150,0.35);
+    color: var(--green);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .hero-label::before { content: '⚡'; font-size: 12px; }
+  .hero h1 {
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 700; color: #fff;
+    line-height: 1.2; margin-bottom: 0.5rem;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-sub { color: rgba(255,255,255,0.55); font-size: 13px; margin-bottom: 1.5rem; }
+
+  .hero-stats {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .stat {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 10px 16px;
+  }
+  .stat-val { font-size: 20px; font-weight: 700; color: #fff; line-height: 1; }
+  .stat-val span { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.5); }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+
+  /* FILTERS */
+  .filters-wrap {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0.75rem 1.5rem;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .filters { max-width: 1200px; margin: 0 auto; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .filter-label { font-size: 12px; color: var(--gray-500); font-weight: 500; white-space: nowrap; }
+  .filter-btn {
+    padding: 5px 14px; border-radius: 20px; border: 1.5px solid var(--gray-200);
+    background: #fff; font-family: var(--font); font-size: 12px; font-weight: 500;
+    color: var(--gray-500); cursor: pointer; transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--green); color: var(--green-dark); }
+  .filter-btn.active { background: var(--green); border-color: var(--green); color: #fff; }
+  .sort-wrap { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .sort-select {
+    padding: 5px 10px; border-radius: 8px; border: 1.5px solid var(--gray-200);
+    font-family: var(--font); font-size: 12px; color: var(--gray-700);
+    background: #fff; cursor: pointer;
+  }
+
+  /* MAIN CONTENT */
+  .main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+  /* INSTALLMENT CONFIG BAR */
+  .config-bar {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;
+  }
+  .config-title { font-size: 12px; font-weight: 600; color: var(--gray-700); white-space: nowrap; }
+  .config-group { display: flex; align-items: center; gap: 8px; }
+  .config-group label { font-size: 11.5px; color: var(--gray-500); white-space: nowrap; }
+  .config-input {
+    padding: 4px 10px; border-radius: 8px; border: 1.5px solid var(--gray-200);
+    font-family: var(--font); font-size: 12px; color: var(--gray-900);
+    width: 70px;
+  }
+  .config-input:focus { outline: none; border-color: var(--green); }
+  .pill-group { display: flex; gap: 5px; }
+  .pill {
+    padding: 4px 11px; border-radius: 20px; border: 1.5px solid var(--gray-200);
+    font-size: 11.5px; font-weight: 500; color: var(--gray-500); cursor: pointer;
+    transition: all 0.12s;
+  }
+  .pill.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .pill:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+
+  /* CAR GRID */
+  .car-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+
+  /* CAR CARD */
+  .car-card {
+    background: var(--card);
+    border: 1px solid var(--gray-200);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .car-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+
+  /* CAR IMAGE */
+  .car-img-wrap {
+    background: linear-gradient(160deg, #F8FAFC 0%, #EDF2F7 100%);
+    padding: 1.25rem 1rem 0.75rem;
+    position: relative;
+    height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .car-img-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30px;
+    background: linear-gradient(to top, rgba(255,255,255,0.6), transparent);
+  }
+  .car-img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: center;
+    max-width: 280px;
+  }
+  .car-badge-type {
+    position: absolute; top: 10px; left: 12px;
+    font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+  .badge-hatch { background: #FEF3C7; color: #92400E; }
+  .badge-suv { background: #DBEAFE; color: #1E40AF; }
+  .badge-city { background: #FCE7F3; color: #9D174D; }
+
+  .promo-badge {
+    position: absolute; top: 10px; right: 12px;
+    font-size: 9.5px; font-weight: 700; padding: 3px 8px; border-radius: 8px;
+    background: var(--green); color: #fff; letter-spacing: 0.03em;
+  }
+
+  /* CAR HEADER */
+  .car-header {
+    padding: 0.9rem 1rem 0.6rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .car-brand { font-size: 11px; color: var(--gray-400); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .car-name { font-size: 15px; font-weight: 700; color: var(--gray-900); line-height: 1.2; }
+  .car-variant { font-size: 11px; color: var(--gray-500); margin-top: 1px; }
+
+  .price-row {
+    display: flex; align-items: baseline; gap: 8px; margin-top: 0.5rem; flex-wrap: wrap;
+  }
+  .price-promo { font-size: 20px; font-weight: 700; color: var(--green-dark); line-height: 1; }
+  .price-old { font-size: 12px; color: var(--gray-400); text-decoration: line-through; }
+  .price-save { font-size: 10.5px; background: var(--green-light); color: var(--green-dark); padding: 2px 7px; border-radius: 8px; font-weight: 600; }
+
+  /* SPECS GRID */
+  .specs-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border-bottom: 1px solid var(--gray-100);
+  }
+  .spec-item {
+    padding: 0.65rem 0.9rem;
+    border-right: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .spec-item:nth-child(3n) { border-right: none; }
+  .spec-item:nth-last-child(-n+3) { border-bottom: none; }
+  .spec-label { font-size: 10px; color: var(--gray-400); font-weight: 500; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .spec-val { font-size: 13px; font-weight: 600; color: var(--gray-800, #1E293B); line-height: 1.2; }
+  .spec-unit { font-size: 10px; color: var(--gray-500); font-weight: 400; }
+
+  /* INSTALLMENT SECTION */
+  .installment-section { padding: 0.9rem 1rem; }
+  .inst-title { font-size: 11px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.6rem; }
+  .inst-row { display: flex; gap: 8px; }
+  .inst-item {
+    flex: 1; text-align: center; padding: 8px 4px; border-radius: 10px;
+    border: 1.5px solid var(--gray-100); background: var(--gray-50);
+  }
+  .inst-months { font-size: 10px; color: var(--gray-500); font-weight: 500; margin-bottom: 2px; }
+  .inst-rate { font-size: 9px; color: var(--gray-400); margin-bottom: 4px; }
+  .inst-amount { font-size: 14px; font-weight: 700; color: var(--gray-900); line-height: 1; }
+  .inst-item.highlight-48 { border-color: rgba(26,115,232,0.3); background: var(--blue-light); }
+  .inst-item.highlight-48 .inst-months { color: var(--blue); }
+  .inst-item.highlight-48 .inst-amount { color: var(--blue); }
+  .inst-item.highlight-48 .inst-rate { color: rgba(26,115,232,0.7); }
+  .inst-promo-label { font-size: 8.5px; background: var(--green); color: #fff; padding: 1px 5px; border-radius: 5px; display: inline-block; margin-bottom: 2px; }
+
+  /* DOWN ROW */
+  .down-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.5rem 1rem 0.9rem;
+  }
+  .down-label { font-size: 11px; color: var(--gray-400); }
+  .down-val { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+
+  /* WARRANTY ROW */
+  .warranty-row {
+    display: flex; gap: 8px; padding: 0 1rem 0.9rem;
+  }
+  .warranty-chip {
+    font-size: 10.5px; padding: 3px 9px; border-radius: 8px;
+    font-weight: 500;
+  }
+  .w-car { background: #EFF6FF; color: #1D4ED8; }
+  .w-bat { background: var(--green-light); color: var(--green-dark); }
+
+  /* PROMO TEXT */
+  .promo-text {
+    margin: 0 1rem 1rem;
+    background: var(--gray-50);
+    border-radius: 10px; padding: 8px 10px;
+    font-size: 11px; color: var(--gray-600, #475569); line-height: 1.5;
+    border-left: 3px solid var(--green);
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    margin: 1.5rem 0 1rem;
+  }
+  .section-header h2 { font-size: 14px; font-weight: 700; color: var(--gray-700); }
+  .section-count {
+    font-size: 11px; background: var(--gray-100); color: var(--gray-500);
+    padding: 2px 10px; border-radius: 10px; font-weight: 500;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--gray-200); }
+
+  /* NO RESULTS */
+  .no-results { text-align: center; padding: 3rem; color: var(--gray-400); font-size: 14px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center; padding: 2rem 1.5rem;
+    font-size: 11px; color: var(--gray-400);
+    border-top: 1px solid var(--gray-200); margin-top: 2rem;
+    background: #fff;
+  }
+
+  /* SHARE BUTTON */
+  .share-btn {
+    position: fixed; bottom: 20px; right: 20px;
+    background: var(--green-dark); color: #fff;
+    border: none; border-radius: 50px; padding: 12px 20px;
+    font-family: var(--font); font-size: 13px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 20px rgba(0,153,112,0.4);
+    z-index: 200; transition: all 0.15s;
+  }
+  .share-btn:hover { transform: scale(1.04); box-shadow: 0 6px 24px rgba(0,153,112,0.5); }
+  .share-toast {
+    position: fixed; bottom: 70px; right: 20px;
+    background: var(--gray-900); color: #fff;
+    padding: 8px 16px; border-radius: 10px; font-size: 12px;
+    opacity: 0; transform: translateY(10px);
+    transition: all 0.2s; pointer-events: none; z-index: 201;
+  }
+  .share-toast.show { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .car-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 0.75rem; }
+    .stat { padding: 8px 12px; }
+    .config-bar { gap: 1rem; }
+    .sort-wrap { margin-left: 0; width: 100%; }
+    .filters-wrap { padding: 0.75rem 1rem; }
+    .main { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">อัปเดตล่าสุด Motor Show 2026</div>
+    <h1>เปรียบเทียบ EV <span>ราคา 3–7 แสน</span><br>ที่คุ้มที่สุดในงาน</h1>
+    <div class="hero-sub">23 มีนาคม – 5 เมษายน 2569 · อิมแพ็ค เมืองทองธานี · ราคาโปรโมชั่นเฉพาะช่วงงาน</div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-val">16 <span>รุ่น</span></div><div class="stat-label">EV ที่ร่วมเปรียบเทียบ</div></div>
+      <div class="stat"><div class="stat-val">349K <span>บาท</span></div><div class="stat-label">ราคาต่ำสุด (LUMIN)</div></div>
+      <div class="stat"><div class="stat-val">699K <span>บาท</span></div><div class="stat-label">ราคาสูงสุด (MG4 X LR)</div></div>
+      <div class="stat"><div class="stat-val">1.98<span>%</span></div><div class="stat-label">ดอกเบี้ยโปรฯ 48 เดือน</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-wrap">
+  <div class="filters">
+    <span class="filter-label">ประเภท:</span>
+    <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+    <button class="filter-btn" data-filter="city">City Car</button>
+    <button class="filter-btn" data-filter="hatch">Hatchback</button>
+    <button class="filter-btn" data-filter="suv">B-SUV</button>
+    <div class="sort-wrap">
+      <span class="filter-label">เรียงโดย:</span>
+      <select class="sort-select" id="sortSelect">
+        <option value="price-asc">ราคา น้อย → มาก</option>
+        <option value="price-desc">ราคา มาก → น้อย</option>
+        <option value="range-desc">ระยะวิ่ง มาก → น้อย</option>
+        <option value="hp-desc">แรงม้า มาก → น้อย</option>
+        <option value="inst48-asc">ผ่อน 48 เดือน น้อย → มาก</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- CONFIG BAR -->
+  <div class="config-bar">
+    <span class="config-title">⚙️ ตั้งค่าการคำนวณ</span>
+    <div class="config-group">
+      <label>ดาวน์ (%)</label>
+      <input class="config-input" type="number" id="downPct" value="25" min="10" max="50" step="5">
+    </div>
+    <div class="config-group">
+      <label>ดบ. 48 เดือน (%)</label>
+      <input class="config-input" type="number" id="rate48" value="1.98" step="0.01">
+    </div>
+    <div class="config-group">
+      <label>ดบ. 60 / 72 เดือน (%)</label>
+      <input class="config-input" type="number" id="rate6072" value="3.49" step="0.01">
+    </div>
+    <div class="config-group">
+      <label>แสดงงวด:</label>
+      <div class="pill-group">
+        <button class="pill active" data-months="48">48</button>
+        <button class="pill active" data-months="60">60</button>
+        <button class="pill active" data-months="72">72</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="carContainer"></div>
+</div>
+
+<div class="footer">
+  ข้อมูล ณ งาน Bangkok International Motor Show 2026 · ราคาและโปรโมชั่นอาจมีการเปลี่ยนแปลง กรุณาตรวจสอบกับผู้จำหน่ายอีกครั้ง<br>
+  คำนวณการผ่อนแบบ Flat Rate · ดาวน์ 25% ของราคาโปรโมชั่น
+</div>
+
+<button class="share-btn" onclick="copyLink()">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  แชร์ตาราง
+</button>
+<div class="share-toast" id="toast">✓ คัดลอก URL แล้ว!</div>
+
+<script>
+const cars = [
+  {
+    id: 1, brand: "ChangAn", name: "LUMIN", variant: "Hatchback 3 ประตู", type: "city",
+    price: 349000, oldPrice: 409000,
+    hp: 48, torque: 87, drive: "FWD", accel: "0-50: 5.9 วิ",
+    battery: 27.99, range: 301, chargeAC: 3.3, chargeDC: 50,
+    size: "3,270×1,700×1,545", wb: 1980,
+    warrantyCar: "3 ปี / 120,000", warrantyBat: "8 ปี / 120,000",
+    promo: "ดอกเบี้ย 0% 60 เดือน + Cash Back 20,000 บาท",
+    img: "https://www.grandprix.co.th/wp-content/uploads/2024/03/67_03-Changan-Lumin-1-620x420@2x.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/153415/exterior-right-front-three-quarter-13.jpeg"
+  },
+  {
+    id: 2, brand: "BYD", name: "ATTO 1", variant: "Dynamic · Hatchback", type: "hatch",
+    price: 429900, oldPrice: null,
+    hp: 75, torque: 135, drive: "FWD", accel: "0-50: 4.9 วิ",
+    battery: 30.08, range: 300, chargeAC: 6.6, chargeDC: 30,
+    size: "3,780×1,715×1,540", wb: 2500,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก",
+    img: "https://static.thairath.co.th/media/PZnhTOtr5D3rd9odAtytz1QTGvbs3kVLFUCQzB2jRdFAgLr.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/153415/exterior-right-front-three-quarter-13.jpeg"
+  },
+  {
+    id: 3, brand: "BYD", name: "ATTO 1", variant: "Premium · Hatchback", type: "hatch",
+    price: 459900, oldPrice: null,
+    hp: 75, torque: 135, drive: "FWD", accel: "0-50: 4.9 วิ",
+    battery: 38.88, range: 380, chargeAC: 6.6, chargeDC: 40,
+    size: "3,780×1,715×1,540", wb: 2500,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก",
+    img: "https://static.thairath.co.th/media/PZnhTOtr5D3rd9odAtytz1QTGvbs3kVLFUCQzB2jRdFAgLr.jpg",
+    imgFallback: null
+  },
+  {
+    id: 4, brand: "GEELY", name: "EX2", variant: "PRO · Hatchback", type: "hatch",
+    price: 429990, oldPrice: null,
+    hp: 116, torque: 150, drive: "RWD", accel: "11.0 วิ",
+    battery: 39.4, range: 395, chargeAC: 6.6, chargeDC: 70,
+    size: "4,135×1,850×1,580", wb: 2650,
+    warrantyCar: "6 ปี / 150,000", warrantyBat: "8 ปี / 150,000",
+    promo: "ฟรีประกันชั้น 1 + Home Charger",
+    img: "https://s359.kapook.com/pagebuilder/15e38622-4e1c-4300-8c10-e1c5ce4c2def.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/176569/geely-ex2-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 5, brand: "GEELY", name: "EX2", variant: "MAX · Hatchback", type: "hatch",
+    price: 459990, oldPrice: null,
+    hp: 116, torque: 150, drive: "RWD", accel: "11.0 วิ",
+    battery: 39.4, range: 395, chargeAC: 6.6, chargeDC: 70,
+    size: "4,135×1,850×1,580", wb: 2650,
+    warrantyCar: "6 ปี / 150,000", warrantyBat: "8 ปี / 150,000",
+    promo: "ฟรีประกันชั้น 1 + Home Charger + จอเพิ่ม",
+    img: "https://s359.kapook.com/pagebuilder/15e38622-4e1c-4300-8c10-e1c5ce4c2def.jpg",
+    imgFallback: null
+  },
+  {
+    id: 6, brand: "BYD", name: "DOLPHIN", variant: "Standard Range", type: "hatch",
+    price: 509900, oldPrice: 599900,
+    hp: 95, torque: 180, drive: "FWD", accel: "12.3 วิ",
+    battery: 50.25, range: 435, chargeAC: 6.6, chargeDC: 70,
+    size: "4,290×1,770×1,570", wb: 2700,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก + Lifetime Warranty",
+    img: "https://www.theoremaonline.com/Uploads/VeicoloNuovo/1f6adc09-5011-4e43-b8eb-896c4511fdf7.webp",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/130781/byd-dolphin-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 7, brand: "GAC AION", name: "UT", variant: "Standard · Hatchback", type: "hatch",
+    price: 519900, oldPrice: 549900,
+    hp: 136, torque: 145, drive: "FWD", accel: "11.9 วิ",
+    battery: 50.27, range: 420, chargeAC: 6.6, chargeDC: 70,
+    size: "4,270×1,850×1,575", wb: 2750,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "Trade-In ลดเพิ่ม 30,000 + ฟรี Home Charger หรือ AC Portable",
+    img: "https://www.headlightmag.com/hlmwp/wp-content/uploads/2025/06/AION-UT-Exterior-003.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/178559/aion-ut-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 8, brand: "MG", name: "MG4", variant: "D Standard Range", type: "hatch",
+    price: 579900, oldPrice: 669900,
+    hp: 170, torque: 250, drive: "RWD", accel: "7.7 วิ",
+    battery: 50, range: 450, chargeAC: 6.6, chargeDC: 120,
+    size: "4,287×1,836×1,504", wb: 2705,
+    warrantyCar: "ตลอดอายุ", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + Home Charger (25,000 บ.)",
+    img: "https://img.icarcdn.com/autospinn/body/000000277664_fdb1f740_3085_4212_9ea3_9eba9b6b26f7.JPG",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/130793/mg-mg4-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 9, brand: "JAECOO", name: "JAECOO 5", variant: "EV MAX+ · B-SUV", type: "suv",
+    price: 579000, oldPrice: null,
+    hp: 211, torque: 288, drive: "FWD", accel: "—",
+    battery: 50.6, range: 505, chargeAC: 6.6, chargeDC: 80,
+    size: "4,380×1,860×1,650", wb: 2620,
+    warrantyCar: "8 ปี / 200,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรี Lifetime Warranty + Home Charger",
+    img: "https://autolifethailand.tv/wp-content/uploads/2025/08/Jaecoo5_TH_001.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/178289/jaecoo-j5-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 10, brand: "GWM ORA", name: "ORA 5", variant: "EV · B-SUV", type: "suv",
+    price: 629000, oldPrice: null,
+    hp: 204, torque: 260, drive: "FWD", accel: "7.5 วิ",
+    battery: 58.3, range: 520, chargeAC: 6.6, chargeDC: 120,
+    size: "4,417×1,833×1,641", wb: 2720,
+    warrantyCar: "—", warrantyBat: "—",
+    promo: "ประกอบในไทย · จอง 1,000+ คันใน 72 ชม.",
+    img: "https://autolifethailand.tv/wp-content/uploads/2026/03/GWM_ORA_5_EV_HEV_TH_001.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/178321/ora-05-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 11, brand: "GAC AION", name: "UT", variant: "Premium · Hatchback", type: "hatch",
+    price: 619900, oldPrice: 649900,
+    hp: 204, torque: 210, drive: "FWD", accel: "7.3 วิ",
+    battery: 60, range: 500, chargeAC: 6.6, chargeDC: 80,
+    size: "4,270×1,850×1,575", wb: 2750,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "Trade-In ลดเพิ่ม 30,000 + ฟรี Home Charger หรือ AC Portable",
+    img: "https://www.headlightmag.com/hlmwp/wp-content/uploads/2025/06/AION-UT-Exterior-003.jpg",
+    imgFallback: null
+  },
+  {
+    id: 12, brand: "OMODA", name: "C5", variant: "EV MAX+ · B-SUV", type: "suv",
+    price: 629000, oldPrice: null,
+    hp: 211, torque: 288, drive: "FWD", accel: "—",
+    battery: 50.6, range: 505, chargeAC: 6.6, chargeDC: 110,
+    size: "4,545×1,830×1,588", wb: 2630,
+    warrantyCar: "8 ปี / 200,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรี Lifetime Warranty + Home Charger + ประกันชั้น 1",
+    img: "https://www.9carthai.com/wp-content/uploads/2026/03/OMODA-C5.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/166491/omoda-5-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 13, brand: "BYD", name: "ATTO 2", variant: "Dynamic · B-SUV", type: "suv",
+    price: 629900, oldPrice: null,
+    hp: 177, torque: 290, drive: "FWD", accel: "7.9 วิ",
+    battery: 51.13, range: 410, chargeAC: 7, chargeDC: 82,
+    size: "4,310×1,830×1,675", wb: 2620,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก + Lifetime Warranty",
+    img: "https://autolifethailand.tv/wp-content/uploads/2026/03/BYD_ATTO_2_TH_2026_001.jpg",
+    imgFallback: "https://imgd.aeplcdn.com/0x0/n/cw/ec/169335/byd-atto-2-exterior-right-front-three-quarter.jpeg"
+  },
+  {
+    id: 14, brand: "BYD", name: "ATTO 2", variant: "Premium · B-SUV", type: "suv",
+    price: 659900, oldPrice: null,
+    hp: 177, torque: 290, drive: "FWD", accel: "7.9 วิ",
+    battery: 51.13, range: 410, chargeAC: 7, chargeDC: 82,
+    size: "4,310×1,830×1,675", wb: 2620,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก + Lifetime Warranty",
+    img: "https://autolifethailand.tv/wp-content/uploads/2026/03/BYD_ATTO_2_TH_2026_001.jpg",
+    imgFallback: null
+  },
+  {
+    id: 15, brand: "BYD", name: "DOLPHIN", variant: "Extended Range", type: "hatch",
+    price: 599900, oldPrice: 719900,
+    hp: 204, torque: 310, drive: "FWD", accel: "7.0 วิ",
+    battery: 60.48, range: 490, chargeAC: 6.6, chargeDC: 80,
+    size: "4,290×1,770×1,570", wb: 2700,
+    warrantyCar: "8 ปี / 160,000", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + ฟิล์มเซรามิก + Lifetime Warranty",
+    img: "https://www.grandprix.co.th/wp-content/uploads/2025/03/BYD_Dolphin_Facelift_2-660x400@2x.png",
+    imgFallback: null
+  },
+  {
+    id: 16, brand: "MG", name: "MG4", variant: "X Long Range", type: "hatch",
+    price: 699900, oldPrice: 749900,
+    hp: 245, torque: 350, drive: "RWD", accel: "6.5 วิ",
+    battery: 62.2, range: 540, chargeAC: 6.6, chargeDC: 140,
+    size: "4,287×1,836×1,504", wb: 2705,
+    warrantyCar: "ตลอดอายุ", warrantyBat: "ตลอดอายุ",
+    promo: "ฟรีประกันชั้น 1 + Home Charger (25,000 บ.)",
+    img: "https://mgrungcharoen.com/wp-content/uploads/2022/11/x-white.png",
+    imgFallback: null
+  }
+];
+
+let activeFilter = 'all';
+let visibleMonths = new Set([48, 60, 72]);
+let sortBy = 'price-asc';
+
+function calcInstallment(price, downPct, months, rate) {
+  const down = price * (downPct / 100);
+  const financed = price - down;
+  const totalInterest = financed * (rate / 100) * (months / 12);
+  return Math.round((financed + totalInterest) / months);
+}
+
+function fmt(n) { return n.toLocaleString('th-TH'); }
+
+function renderCards() {
+  const downPct = parseFloat(document.getElementById('downPct').value) || 25;
+  const rate48 = parseFloat(document.getElementById('rate48').value) || 1.98;
+  const rate6072 = parseFloat(document.getElementById('rate6072').value) || 3.49;
+
+  let filtered = cars.filter(c => activeFilter === 'all' || c.type === activeFilter);
+
+  filtered.sort((a, b) => {
+    if (sortBy === 'price-asc') return a.price - b.price;
+    if (sortBy === 'price-desc') return b.price - a.price;
+    if (sortBy === 'range-desc') return b.range - a.range;
+    if (sortBy === 'hp-desc') return b.hp - a.hp;
+    if (sortBy === 'inst48-asc') return calcInstallment(a.price, downPct, 48, rate48) - calcInstallment(b.price, downPct, 48, rate48);
+    return 0;
+  });
+
+  const container = document.getElementById('carContainer');
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="no-results">ไม่พบรุ่นที่ตรงกับตัวกรอง</div>';
+    return;
+  }
+
+  const typeLabel = { city: '🏙️ City Car', hatch: '🚗 Hatchback', suv: '🚙 B-SUV / Crossover' };
+  const typeClass = { city: 'badge-city', hatch: 'badge-hatch', suv: 'badge-suv' };
+  const typeText = { city: 'City Car', hatch: 'Hatchback', suv: 'B-SUV' };
+
+  let html = '';
+  if (activeFilter === 'all') {
+    const groups = ['city', 'hatch', 'suv'];
+    groups.forEach(type => {
+      const group = filtered.filter(c => c.type === type);
+      if (group.length === 0) return;
+      html += `<div class="section-header">
+        <h2>${typeLabel[type]}</h2>
+        <span class="section-count">${group.length} รุ่น</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="car-grid">`;
+      group.forEach(c => { html += buildCard(c, downPct, rate48, rate6072, typeClass, typeText); });
+      html += '</div>';
+    });
+  } else {
+    html += `<div class="section-header">
+      <h2>${typeLabel[activeFilter]}</h2>
+      <span class="section-count">${filtered.length} รุ่น</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="car-grid">`;
+    filtered.forEach(c => { html += buildCard(c, downPct, rate48, rate6072, typeClass, typeText); });
+    html += '</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function buildCard(c, downPct, rate48, rate6072, typeClass, typeText) {
+  const down = Math.round(c.price * downPct / 100);
+  const m48 = calcInstallment(c.price, downPct, 48, rate48);
+  const m60 = calcInstallment(c.price, downPct, 60, rate6072);
+  const m72 = calcInstallment(c.price, downPct, 72, rate6072);
+  const saveAmt = c.oldPrice ? c.oldPrice - c.price : 0;
+
+  const show48 = visibleMonths.has(48);
+  const show60 = visibleMonths.has(60);
+  const show72 = visibleMonths.has(72);
+
+  return `
+  <div class="car-card">
+    <div class="car-img-wrap">
+      <span class="car-badge-type ${typeClass[c.type]}">${typeText[c.type]}</span>
+      ${c.oldPrice ? `<span class="promo-badge">ลด ${fmt(saveAmt)}</span>` : ''}
+      <img class="car-img" 
+        src="${c.img}" 
+        alt="${c.brand} ${c.name}"
+        onerror="this.src='https://via.placeholder.com/280x120/F1F5F9/94A3B8?text=${encodeURIComponent(c.brand+' '+c.name)}'"
+        loading="lazy">
+    </div>
+    <div class="car-header">
+      <div class="car-brand">${c.brand}</div>
+      <div class="car-name">${c.name}</div>
+      <div class="car-variant">${c.variant}</div>
+      <div class="price-row">
+        <span class="price-promo">${fmt(c.price)} ฿</span>
+        ${c.oldPrice ? `<span class="price-old">${fmt(c.oldPrice)}</span>` : ''}
+        ${saveAmt > 0 ? `<span class="price-save">ประหยัด ${fmt(saveAmt)}</span>` : ''}
+      </div>
+    </div>
+
+    <div class="specs-grid">
+      <div class="spec-item">
+        <div class="spec-label">แรงม้า</div>
+        <div class="spec-val">${c.hp} <span class="spec-unit">hp</span></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">แรงบิด</div>
+        <div class="spec-val">${c.torque} <span class="spec-unit">Nm</span></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">ขับเคลื่อน</div>
+        <div class="spec-val">${c.drive}</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">แบตเตอรี่</div>
+        <div class="spec-val">${c.battery} <span class="spec-unit">kWh</span></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">ระยะวิ่ง</div>
+        <div class="spec-val">${c.range} <span class="spec-unit">กม.</span></div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">ชาร์จ DC</div>
+        <div class="spec-val">${c.chargeDC} <span class="spec-unit">kW</span></div>
+      </div>
+    </div>
+
+    <div class="installment-section">
+      <div class="inst-title">ผ่อนชำระรายเดือน (ดาวน์ ${downPct}% = ${fmt(down)} บาท)</div>
+      <div class="inst-row">
+        ${show48 ? `<div class="inst-item highlight-48">
+          <div class="inst-promo-label">โปรโมชั่น</div>
+          <div class="inst-months">48 เดือน</div>
+          <div class="inst-rate">ดบ. ${rate48}%</div>
+          <div class="inst-amount">${fmt(m48)}</div>
+        </div>` : ''}
+        ${show60 ? `<div class="inst-item">
+          <div class="inst-months">60 เดือน</div>
+          <div class="inst-rate">ดบ. ${rate6072}%</div>
+          <div class="inst-amount">${fmt(m60)}</div>
+        </div>` : ''}
+        ${show72 ? `<div class="inst-item">
+          <div class="inst-months">72 เดือน</div>
+          <div class="inst-rate">ดบ. ${rate6072}%</div>
+          <div class="inst-amount">${fmt(m72)}</div>
+        </div>` : ''}
+      </div>
+    </div>
+
+    <div class="warranty-row">
+      <span class="warranty-chip w-car">🛡️ รถ: ${c.warrantyCar}</span>
+      <span class="warranty-chip w-bat">🔋 แบต: ${c.warrantyBat}</span>
+    </div>
+
+    <div class="promo-text">🎁 ${c.promo}</div>
+  </div>`;
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+// Sort
+document.getElementById('sortSelect').addEventListener('change', e => {
+  sortBy = e.target.value;
+  renderCards();
+});
+
+// Pills
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const m = parseInt(pill.dataset.months);
+    if (visibleMonths.has(m)) {
+      if (visibleMonths.size > 1) { visibleMonths.delete(m); pill.classList.remove('active'); }
+    } else {
+      visibleMonths.add(m); pill.classList.add('active');
+    }
+    renderCards();
+  });
+});
+
+// Config inputs
+['downPct','rate48','rate6072'].forEach(id => {
+  document.getElementById(id).addEventListener('input', renderCards);
+});
+
+function copyLink() {
+  const url = window.location.href;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => showToast());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = url; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); showToast();
+  }
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+renderCards();
+</script>
+</body>
+</html>
